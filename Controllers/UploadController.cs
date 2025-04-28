@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ResumeAnalyzer.Services;
+using ResumeAnalyzer.DTOs;
 
 namespace ResumeAnalyzer.Controllers
 {
@@ -22,7 +23,12 @@ namespace ResumeAnalyzer.Controllers
 
             var extractedText = await _textExtractorService.ExtractTextAsync(file);
 
-            return Ok(new { extractedText });
+            var response = new ExtractedTextDto
+            {
+                Text = extractedText
+            };
+
+            return Ok(response);
         }
     }
 }
